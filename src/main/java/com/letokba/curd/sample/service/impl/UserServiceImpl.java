@@ -1,17 +1,17 @@
 package com.letokba.curd.sample.service.impl;
 
+import com.letokba.curd.annotation.CurdService;
 import com.letokba.curd.sample.dao.UserDao;
 import com.letokba.curd.sample.entity.User;
 import com.letokba.curd.sample.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Service;
 
 /**
  * @author Yong
  * @date 2021/2/9
  */
-@Service
+@CurdService
 public class UserServiceImpl implements UserService {
 
     private UserDao userDao;

@@ -3,6 +3,9 @@ package com.letokba.curd;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * @author Yong
+ */
 @SpringBootApplication
 public class CurdServiceApplication {
 
