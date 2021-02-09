@@ -1,22 +1,26 @@
-package com.letokba.curd.core;
+package com.letokba.curd.core2;
 
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
+
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 /**
  * @author Yong
- * @date 2021/2/8
+ * @date 2021/2/9
  */
-public interface QueryService<T, ID> {
+public interface QueryService<T> {
     /**
      * query a entity by it's ID
      * @param id the entity's id
      * @return null or one Object
      */
-    default T getById(ID id) {
-        return getDao().findById(id).orElse(null);
+    default T getById(Serializable id) {
+        return getDao().selectById(id);
     }
 
 
@@ -25,8 +29,8 @@ public interface QueryService<T, ID> {
      * @param ids a series of id
      * @return null or List
      */
-    default List<T> listByIds(Iterable<ID> ids) {
-        return getDao().findAllById(ids);
+    default List<T> listByIds(Collection<? extends Serializable> ids) {
+        return getDao().selectBatchIds(ids);
     }
 
     /**
@@ -35,7 +39,7 @@ public interface QueryService<T, ID> {
      * @return  null or one Object.
      */
     default T getOne(T t){
-        return getDao().findOne(Example.of(t)).orElse(null);
+        return getDao().selectOne(new QueryWrapper<>(t));
     }
 
     /**
@@ -44,7 +48,7 @@ public interface QueryService<T, ID> {
      * @return list
      */
     default List<T> listAll(T t) {
-        return getDao().findAll(Example.of(t));
+        return getDao().selectList(new QueryWrapper<>(t));
     }
 
     /**
@@ -52,7 +56,7 @@ public interface QueryService<T, ID> {
      * @return list
      */
     default List<T> listAll() {
-        return getDao().findAll();
+        return getDao().selectList(new QueryWrapper<>());
     }
 
     /**
@@ -63,15 +67,13 @@ public interface QueryService<T, ID> {
      * @return list
      */
     default List<T> getPage(T t, int page, int size) {
-        return getDao().findAll(PageRequest.of(page, size)).getContent();
+        return getDao().selectPage(new Page<T>(page, size), new QueryWrapper<>(t)).getRecords();
     }
 
-
-
     /**
-     * 获取 Dao
-     * @return {@link JpaRepository}
+     * 获取 Mapper
+     * @return {@link BaseMapper}
      */
-    JpaRepository<T, ID> getDao();
+    BaseMapper<T> getDao();
 
 }
