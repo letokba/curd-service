@@ -8,7 +8,7 @@ import java.util.List;
  * @author Yong
  * @date 2021/2/8
  */
-public interface SimpleService<T, D extends JpaRepository<T,ID>, ID> extends QueryService<T, ID> {
+public interface CurdService<T, D extends JpaRepository<T,ID>, ID> extends QueryService<T, ID> {
 
     /**
      * save a entity
