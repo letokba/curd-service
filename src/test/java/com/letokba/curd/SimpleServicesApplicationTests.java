@@ -9,7 +9,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class SimpleServicesApplicationTests {
 
-    @Autowired
-    private UserService userService;
+
+
+    @Test
+    void contextLoads() {
+
+    }
 
 }

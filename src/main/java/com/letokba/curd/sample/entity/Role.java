@@ -1,5 +1,6 @@
 package com.letokba.curd.sample.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import javax.persistence.*;
  * @author Yong
  * @date 2021/1/23
  */
+@TableName("roles")
 @Table(name = "roles")
 @Entity
 @Data

@@ -7,6 +7,7 @@ import com.letokba.curd.sample.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+
 /**
  * @author Yong
  * @date 2021/2/9
